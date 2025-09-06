@@ -23,66 +23,106 @@ import { useState } from "react"
 export default function LandingPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [contactPopupOpen, setContactPopupOpen] = useState(false)
+  const [mobileDownloadExpanded, setMobileDownloadExpanded] = useState(false)
 
   return (
-    <div className="min-h-screen relative overflow-hidden bg-slate-900">
-      {/* Atmospheric Background */}
-      <div className="fixed inset-0 -z-10">
-        {/* Main radial gradient */}
+    <div className="min-h-screen relative overflow-hidden">
+      <div className="fixed inset-0 z-0">
+        {/* Main gradient background */}
         <div
           className="absolute inset-0"
           style={{
-            background: "radial-gradient(ellipse at center, #2d4663 0%, #1a2b42 50%, #0a1628 100%)",
+            background: `
+              radial-gradient(ellipse at top left, #1e40af 0%, #312e81 30%, #1e1b4b 60%, #0f172a 100%),
+              radial-gradient(ellipse at bottom right, #7c3aed 0%, #5b21b6 25%, #312e81 50%, transparent 100%),
+              linear-gradient(135deg, #0f172a 0%, #1e1b4b 40%, #312e81 80%, #1e40af 100%)
+            `,
           }}
         />
 
-        {/* Subtle noise texture */}
+        {/* Animated floating orbs - more visible */}
+        <div className="absolute inset-0">
+          <div
+            className="absolute w-96 h-96 rounded-full"
+            style={{
+              background:
+                "radial-gradient(circle, rgba(59, 130, 246, 0.8) 0%, rgba(59, 130, 246, 0.3) 50%, transparent 100%)",
+              filter: "blur(40px)",
+              top: "10%",
+              left: "10%",
+              animation: "float 6s ease-in-out infinite",
+            }}
+          />
+          <div
+            className="absolute w-80 h-80 rounded-full"
+            style={{
+              background:
+                "radial-gradient(circle, rgba(147, 51, 234, 0.7) 0%, rgba(147, 51, 234, 0.2) 50%, transparent 100%)",
+              filter: "blur(35px)",
+              bottom: "15%",
+              right: "15%",
+              animation: "float 8s ease-in-out infinite reverse",
+            }}
+          />
+          <div
+            className="absolute w-64 h-64 rounded-full"
+            style={{
+              background:
+                "radial-gradient(circle, rgba(16, 185, 129, 0.6) 0%, rgba(16, 185, 129, 0.2) 50%, transparent 100%)",
+              filter: "blur(30px)",
+              top: "60%",
+              left: "60%",
+              animation: "pulse 4s ease-in-out infinite",
+            }}
+          />
+        </div>
+
+        {/* Moving particles - more visible */}
+        <div className="absolute inset-0">
+          {[...Array(20)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute rounded-full bg-white animate-pulse"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                width: `${Math.random() * 8 + 4}px`,
+                height: `${Math.random() * 8 + 4}px`,
+                opacity: Math.random() * 0.6 + 0.3,
+                animationDelay: `${Math.random() * 3}s`,
+                animationDuration: `${Math.random() * 3 + 2}s`,
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Cinematic light streaks */}
         <div
-          className="absolute inset-0 opacity-[0.03]"
+          className="absolute inset-0"
           style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3Cfilter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+            background: `
+              linear-gradient(45deg, transparent 40%, rgba(59, 130, 246, 0.4) 50%, transparent 60%),
+              linear-gradient(-45deg, transparent 40%, rgba(147, 51, 234, 0.3) 50%, transparent 60%)
+            `,
+            animation: "moveRays 10s ease-in-out infinite alternate",
           }}
         />
       </div>
 
-      {/* Enhanced Space Animation Video Background */}
-      <div className="fixed inset-0 -z-5">
+      {/* Video background for desktop only */}
+      <div className="fixed inset-0 z-0">
         <video
           autoPlay
           muted
           loop
           playsInline
-          className="hidden md:block absolute inset-0 w-full h-full object-cover opacity-70"
+          className="hidden md:block absolute inset-0 w-full h-full object-cover opacity-30"
           style={{
-            filter: "brightness(0.8) contrast(1.2) saturate(1.1)",
+            filter: "brightness(0.4) contrast(1.5) saturate(1.3) blur(1px)",
           }}
         >
           <source src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Space-BjlPAfapX976c44BSkWOSKcQOf4YJZ.mp4" type="video/mp4" />
         </video>
-
-        <div className="md:hidden absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800">
-          <div
-            className="absolute inset-0 opacity-30"
-            style={{
-              background: `
-                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.2) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%)
-              `,
-              animation: "float 6s ease-in-out infinite",
-            }}
-          />
-        </div>
-
-        {/* Dynamic overlay that pulses with the animation */}
-        <div
-          className="absolute inset-0 animate-pulse hidden md:block"
-          style={{
-            background:
-              "radial-gradient(ellipse at center, rgba(45, 70, 99, 0.2) 0%, rgba(26, 43, 66, 0.4) 50%, rgba(10, 22, 40, 0.6) 100%)",
-            animationDuration: "4s",
-          }}
-        />
       </div>
 
       {/* Navigation */}
@@ -166,7 +206,7 @@ export default function LandingPage() {
                 size="sm"
                 style={{ transform: "translate3d(0, 0, 0)" }}
                 onClick={() => {
-                  document.getElementById("devices")?.scrollIntoView({ behavior: "smooth" })
+                  document.getElementById("mobile-download")?.scrollIntoView({ behavior: "smooth" })
                   setMobileMenuOpen(false)
                 }}
               >
@@ -179,7 +219,7 @@ export default function LandingPage() {
       </nav>
 
       {/* Hero Section */}
-      <main className="relative z-10 min-h-screen flex items-center bg-slate-900">
+      <main className="relative z-10 min-h-screen flex items-center">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-4xl">
             {/* Hero Content - Left Aligned */}
@@ -234,7 +274,7 @@ export default function LandingPage() {
         </div>
       </main>
 
-      <section id="features" className="relative z-10 py-20 px-4 lg:px-8 bg-slate-900">
+      <section id="features" className="relative z-10 py-20 px-4 lg:px-8">
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-light text-white mb-4">
@@ -291,7 +331,81 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section id="devices" className="relative z-10 py-20 px-4 lg:px-8 bg-slate-900">
+      {/* Mobile-Only Download Section */}
+      <section id="mobile-download" className="md:hidden relative z-10 py-20 px-4">
+        <div className="container mx-auto">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-light text-white mb-4">Download Yoteshin Bank</h2>
+            <p className="text-white/70 text-lg max-w-2xl mx-auto">Get the app on your device and start watching</p>
+          </div>
+
+          <div className="max-w-md mx-auto">
+            {!mobileDownloadExpanded ? (
+              <Button
+                size="lg"
+                className="w-full bg-black/60 hover:bg-black/70 border border-white/30 hover:border-white/40 text-white transition-all duration-300 hover:-translate-y-0.5 px-8 py-4 text-lg font-medium shadow-lg hover:shadow-xl will-change-transform"
+                style={{ transform: "translate3d(0, 0, 0)" }}
+                onClick={() => setMobileDownloadExpanded(true)}
+              >
+                <Download className="mr-3 h-6 w-6" />
+                Choose Your Device
+              </Button>
+            ) : (
+              <div className="space-y-4 animate-in slide-in-from-top-2 duration-300">
+                <Button
+                  size="lg"
+                  className="w-full bg-black/60 hover:bg-black/70 border border-white/30 hover:border-white/40 text-white transition-all duration-300 hover:-translate-y-0.5 px-6 py-4 shadow-lg hover:shadow-xl will-change-transform justify-start"
+                  style={{ transform: "translate3d(0, 0, 0)" }}
+                  onClick={() => window.open("https://cdn.msubcloud1.xyz/file/msubcloud/app/msubtv.apk", "_blank")}
+                >
+                  <Monitor className="mr-3 h-5 w-5" />
+                  TV & Android Box
+                </Button>
+
+                <Button
+                  size="lg"
+                  className="w-full bg-black/60 hover:bg-black/70 border border-white/30 hover:border-white/40 text-white transition-all duration-300 hover:-translate-y-0.5 px-6 py-4 shadow-lg hover:shadow-xl will-change-transform justify-start"
+                  style={{ transform: "translate3d(0, 0, 0)" }}
+                  onClick={() => window.open("https://cdn.msubcloud1.xyz/file/msubcloud/app/msubph.apk", "_blank")}
+                >
+                  <Phone className="mr-3 h-5 w-5" />
+                  Android Phone
+                </Button>
+
+                <Button
+                  size="lg"
+                  className="w-full bg-black/60 hover:bg-black/70 border border-white/30 hover:border-white/40 text-white transition-all duration-300 hover:-translate-y-0.5 px-6 py-4 shadow-lg hover:shadow-xl will-change-transform justify-start"
+                  style={{ transform: "translate3d(0, 0, 0)" }}
+                  onClick={() => window.open("https://cdn.msubcloud1.xyz/file/msubcloud/app/msubpc.exe", "_blank")}
+                >
+                  <Monitor className="mr-3 h-5 w-5" />
+                  Computer
+                </Button>
+
+                <Button
+                  size="lg"
+                  className="w-full bg-black/60 hover:bg-black/70 border border-white/30 hover:border-white/40 text-white transition-all duration-300 hover:-translate-y-0.5 px-6 py-4 shadow-lg hover:shadow-xl will-change-transform justify-start"
+                  style={{ transform: "translate3d(0, 0, 0)" }}
+                  onClick={() => window.open("https://cdn.msubcloud1.xyz/file/msubcloud/app/msubmac.dmg", "_blank")}
+                >
+                  <Apple className="mr-3 h-5 w-5" />
+                  Macbook
+                </Button>
+
+                <Button
+                  variant="outline"
+                  className="w-full bg-black/30 hover:bg-black/40 border border-white/30 hover:border-white/40 text-white/70 hover:text-white transition-all duration-300 px-6 py-2 mt-4"
+                  onClick={() => setMobileDownloadExpanded(false)}
+                >
+                  Close
+                </Button>
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+
+      <section id="devices" className="relative z-10 py-20 px-4 lg:px-8">
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-light text-white mb-4">Available on All Your Devices</h2>
@@ -377,7 +491,7 @@ export default function LandingPage() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="relative z-10 py-20 px-4 lg:px-8 bg-slate-900">
+      <section id="contact" className="relative z-10 py-20 px-4 lg:px-8">
         <div className="absolute inset-0 bg-black/20 md:bg-black/10"></div>
         <div className="container mx-auto text-center relative">
           <h2 className="text-3xl lg:text-4xl font-light text-white mb-4">Get in Touch</h2>
@@ -447,23 +561,51 @@ export default function LandingPage() {
         </div>
       )}
 
-      {/* Subtle glow effects */}
       <div className="fixed inset-0 -z-5 pointer-events-none">
         <div
-          className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full opacity-10"
+          className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full opacity-15"
           style={{
-            background: "radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, transparent 70%)",
-            filter: "blur(40px)",
+            background: "radial-gradient(circle, rgba(59, 130, 246, 0.4) 0%, transparent 70%)",
+            filter: "blur(60px)",
+            animation: "pulse 4s ease-in-out infinite",
           }}
         />
         <div
-          className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full opacity-5"
+          className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full opacity-10"
+          style={{
+            background: "radial-gradient(circle, rgba(147, 51, 234, 0.3) 0%, transparent 70%)",
+            filter: "blur(80px)",
+            animation: "pulse 6s ease-in-out infinite reverse",
+          }}
+        />
+        <div
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full opacity-5"
           style={{
             background: "radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%)",
-            filter: "blur(60px)",
+            filter: "blur(100px)",
+            animation: "slowSpin 20s linear infinite",
           }}
         />
       </div>
+
+      <style jsx>{`
+        @keyframes moveRays {
+          0% { transform: translateX(-10%) translateY(-10%) rotate(0deg); opacity: 0.3; }
+          50% { transform: translateX(5%) translateY(5%) rotate(180deg); opacity: 0.6; }
+          100% { transform: translateX(-10%) translateY(-10%) rotate(360deg); opacity: 0.3; }
+        }
+        
+        @keyframes float {
+          0%, 100% { transform: translateY(0px) scale(1); opacity: 0.6; }
+          33% { transform: translateY(-20px) scale(1.1); opacity: 0.8; }
+          66% { transform: translateY(10px) scale(0.9); opacity: 0.7; }
+        }
+        
+        @keyframes pulse {
+          0%, 100% { opacity: 0.4; transform: scale(1); }
+          50% { opacity: 0.8; transform: scale(1.1); }
+        }
+      `}</style>
     </div>
   )
 }
