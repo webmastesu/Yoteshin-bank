@@ -25,7 +25,7 @@ export default function LandingPage() {
   const [contactPopupOpen, setContactPopupOpen] = useState(false)
 
   return (
-    <div className="min-h-screen relative overflow-hidden">
+    <div className="min-h-screen relative overflow-hidden bg-slate-900">
       {/* Atmospheric Background */}
       <div className="fixed inset-0 -z-10">
         {/* Main radial gradient */}
@@ -115,6 +115,7 @@ export default function LandingPage() {
               className="bg-black/60 hover:bg-black/70 md:bg-black/50 md:hover:bg-black/60 md:backdrop-blur-sm border border-white/30 hover:border-white/40 text-white transition-all duration-300 hover:-translate-y-0.5 px-8 py-3 text-base font-medium shadow-lg hover:shadow-xl will-change-transform"
               size="sm"
               style={{ transform: "translate3d(0, 0, 0)" }}
+              onClick={() => document.getElementById("devices")?.scrollIntoView({ behavior: "smooth" })}
             >
               Download Now
               <Download className="ml-2 h-4 w-4" />
@@ -164,6 +165,10 @@ export default function LandingPage() {
                 className="bg-black/40 hover:bg-black/50 md:bg-white/15 md:hover:bg-white/25 border border-white/30 hover:border-white/40 text-white w-full justify-center shadow-lg hover:shadow-xl transition-all duration-300 will-change-transform"
                 size="sm"
                 style={{ transform: "translate3d(0, 0, 0)" }}
+                onClick={() => {
+                  document.getElementById("devices")?.scrollIntoView({ behavior: "smooth" })
+                  setMobileMenuOpen(false)
+                }}
               >
                 Download Now
                 <Download className="ml-2 h-4 w-4" />
@@ -174,7 +179,7 @@ export default function LandingPage() {
       </nav>
 
       {/* Hero Section */}
-      <main className="relative z-10 min-h-screen flex items-center">
+      <main className="relative z-10 min-h-screen flex items-center bg-slate-900">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-4xl">
             {/* Hero Content - Left Aligned */}
@@ -185,12 +190,6 @@ export default function LandingPage() {
                   fontSize: "clamp(2.5rem, 5vw, 4rem)",
                   lineHeight: "1.1",
                   letterSpacing: "-0.02em",
-                  background: "linear-gradient(90deg, #ffffff 0%, #e2e8f0 50%, #ffffff 100%)",
-                  backgroundSize: "200% 100%",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                  animation: "shimmer 3s ease-in-out infinite",
                 }}
               >
                 Your Ultimate Movie Experience
@@ -198,7 +197,7 @@ export default function LandingPage() {
 
               {/* Supporting Text */}
               <p
-                className="text-white/80 mb-8 max-w-xl"
+                className="text-white mb-8 max-w-xl"
                 style={{
                   fontSize: "clamp(1rem, 2vw, 1.25rem)",
                   lineHeight: "1.5",
@@ -214,6 +213,7 @@ export default function LandingPage() {
                   size="lg"
                   className="bg-black/40 hover:bg-black/50 md:bg-black/50 md:hover:bg-black/60 md:backdrop-blur-sm border border-white/30 hover:border-white/40 text-white transition-all duration-300 hover:-translate-y-0.5 px-8 py-3 text-base font-medium shadow-lg hover:shadow-xl will-change-transform"
                   style={{ transform: "translate3d(0, 0, 0)" }}
+                  onClick={() => document.getElementById("devices")?.scrollIntoView({ behavior: "smooth" })}
                 >
                   Start Watching Free
                   <Play className="ml-2 h-5 w-5" />
@@ -224,6 +224,7 @@ export default function LandingPage() {
                   size="lg"
                   className="bg-black/30 hover:bg-black/40 md:bg-black/40 md:hover:bg-black/50 md:backdrop-blur-sm border border-white/30 hover:border-white/40 text-white transition-all duration-300 hover:-translate-y-0.5 px-8 py-3 text-base font-medium shadow-lg hover:shadow-xl will-change-transform"
                   style={{ transform: "translate3d(0, 0, 0)" }}
+                  onClick={() => document.getElementById("devices")?.scrollIntoView({ behavior: "smooth" })}
                 >
                   Watch Trailer
                 </Button>
@@ -233,7 +234,7 @@ export default function LandingPage() {
         </div>
       </main>
 
-      <section id="features" className="relative z-10 py-20 px-4 lg:px-8">
+      <section id="features" className="relative z-10 py-20 px-4 lg:px-8 bg-slate-900">
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-light text-white mb-4">
@@ -290,7 +291,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section id="devices" className="relative z-10 py-20 px-4 lg:px-8">
+      <section id="devices" className="relative z-10 py-20 px-4 lg:px-8 bg-slate-900">
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-light text-white mb-4">Available on All Your Devices</h2>
@@ -376,7 +377,7 @@ export default function LandingPage() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="relative z-10 py-20 px-4 lg:px-8">
+      <section id="contact" className="relative z-10 py-20 px-4 lg:px-8 bg-slate-900">
         <div className="absolute inset-0 bg-black/20 md:bg-black/10"></div>
         <div className="container mx-auto text-center relative">
           <h2 className="text-3xl lg:text-4xl font-light text-white mb-4">Get in Touch</h2>
