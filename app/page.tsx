@@ -410,7 +410,7 @@ export default function LandingPage() {
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-light text-white mb-4">Available on All Your Devices</h2>
             <p className="text-white/70 text-lg max-w-2xl mx-auto">
-              Stream seamlessly across smartphones, tablets, smart TVs, and more
+              Stream seamlessly across smartphones, tablets, Android TVs, and more
             </p>
           </div>
 
@@ -419,7 +419,7 @@ export default function LandingPage() {
               <div className="bg-black/40 md:bg-black/30 md:backdrop-blur-sm border border-white/20 rounded-2xl p-8 mb-4 hover:bg-black/50 md:hover:bg-white/15 transition-all duration-300 hover:-translate-y-1 shadow-lg hover:shadow-xl h-48 flex flex-col justify-center will-change-transform">
                 <Monitor className="h-16 w-16 mx-auto mb-4 text-white" />
                 <h3 className="text-xl font-semibold text-white mb-2">TV & Android Box</h3>
-                <p className="text-white/70">Smart TVs & Android TV Boxes</p>
+                <p className="text-white/70">Android TV & Android TV Boxes</p>
               </div>
             </div>
 
